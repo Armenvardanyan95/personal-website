@@ -1,0 +1,83 @@
+mat-toolbar {
+    .menu {
+        width: 63%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        .heading {
+            color: white;
+        }
+
+        .active {
+            color: #edc348;
+        }
+    }
+}
+
+.container {
+    max-width: 65%;
+    margin: 0 auto;
+    display: flex;
+
+    aside {
+        margin-top: 10px;
+        max-width: 270px;
+
+        .icon-btn {
+            color: rgb(61, 60, 60);
+        }
+
+        .pfp {
+            width: 250px;
+            height: 250px;
+            border-radius: 5%;
+            background-color: #fff;
+            display: block;
+            margin-bottom: 20px;
+        }   
+    }
+}
+
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #7b1fa2;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+    aside {
+        width: 99%;
+        margin: auto;
+        max-width: 320px !important;
+
+        img {
+            height: 290px !important;
+            width: 290px !important;
+        }
+    }
+
+    .container {
+        width: 90%;
+        max-width: unset;
+        flex-wrap: wrap;
+    }
+
+    .links {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .burger {
+        display: none;
+    }
+    
+}

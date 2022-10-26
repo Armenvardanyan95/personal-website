@@ -1,0 +1,17 @@
+<h1>Code Snippets</h1>
+<p>
+  Here I present interesting use cases with short snippets of code that solve
+  those problems
+</p>
+
+<mat-card *ngFor="let snippet of snippets">
+  <mat-card-header>
+    <mat-card-title>{{ snippet.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ snippet.description }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <markdown [src]="snippet.path" lineNumbers></markdown>
+  </mat-card-content>
+</mat-card>

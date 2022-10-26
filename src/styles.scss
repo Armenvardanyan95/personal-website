@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~github-calendar/dist/github-calendar.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+a {
+    color: #c552d9;
+    text-decoration: none;
+}
+
+.location {
+    text-decoration: underline !important;
+    display: flex;
+    align-items: end;
+}
