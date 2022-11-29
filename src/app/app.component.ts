@@ -118,15 +118,3 @@ export class AppComponent implements OnInit {
     document.body.dispatchEvent(new Event('wheel'));
   }
 }
-
-
-const fns = new Map([
-  ['ratemaking', (payload: EsMiPaylod) => this.triangle.getEsimicnh()],
-  ['triangle', (payload: EnMiPayload) => this.triangle.getEsimicnh()],
-  ['urishcase', payload => this.triangle.getEsimicnh()],
-])
-
-const fn = fns.get(case);
-fn().pipe(
-  
-)
