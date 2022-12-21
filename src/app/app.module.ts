@@ -19,6 +19,7 @@ import { SanitizerPipe } from './common/pipes/dom-sanitizer.pipe';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { CodeSnippetsComponent } from './pages/code-snippets/code-snippets.component';
 import { OpenSourceComponent } from './pages/open-source/open-source.component';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { OpenSourceComponent } from './pages/open-source/open-source.component';
     MatIconModule,
     MatMenuModule,
     MarkdownModule.forRoot(),
+    ScullyLibModule,
   ],
   providers: [
     MatIconRegistry,
@@ -50,3 +52,12 @@ import { OpenSourceComponent } from './pages/open-source/open-source.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+// pure js function that scrolls to bottom of page
+
+function scrollToBottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+
