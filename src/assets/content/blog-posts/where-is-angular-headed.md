@@ -1,3 +1,5 @@
+_Original cover photo by [Laura Cleffmann](https://unsplash.com/@cloudett) on Unsplash._
+
 In recent releases of our beloved Angular framework we have seen a couple of changes that might, in my opinion, reveal the general course Angular is going to take in the future. In this post I will try to explain what I think is going on and what it means for us as Angular developers.
 
 ## What is new?
