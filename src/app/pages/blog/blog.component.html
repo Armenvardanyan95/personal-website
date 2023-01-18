@@ -1,0 +1,25 @@
+<div class="blog-posts-container">
+    <div *ngFor="let post of blogPosts" class="blog-post">
+        <div class="image-container">
+            <img [src]="'assets/images/cover-photos/' + post.cover" width="240px" height="190px" [alt]="post.title"/>
+        </div>
+        <div class="post-content">
+            <div class="title-section">
+                <h2>{{post.title}}</h2>
+                <span>
+                    {{post.date | date: 'mediumDate'}}
+                </span>
+            </div>
+            <p>{{post.description}}</p>
+            <a class="read-more" [routerLink]="['/blog', post.slug]">Read more</a>
+            <div class="tags">
+                <a *ngFor="let tag of post.tags" class="tag" [href]="tag.link" mat-stroked-button target="_blank" matTooltip="Read Docs">
+                    <span>#{{tag.name}}</span>
+                </a>
+            </div>
+            <div class="post-meta">
+            </div>
+        </div>
+    </div>
+</div>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

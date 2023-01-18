@@ -1,0 +1,20 @@
+.blog-post-container {
+    max-width: 900px;
+    margin: 10px;
+
+    img {
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 1800px) {
+    .blog-post-container {
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-post-container {
+        max-width: 320px;
+    }
+}

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
-import { fromEvent, merge } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { combineLatest, fromEvent, merge } from 'rxjs';
+import { filter, map, startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -86,6 +86,24 @@ export class AppComponent implements OnInit {
       resource: 'assets/icons/email.svg',
     },
   ];
+
+  currentRoute$ = this.router.events.pipe(
+    filter((event) => event instanceof NavigationEnd),
+    map((event) => (event as NavigationEnd).url),
+    startWith('/')
+  );
+  windowWidth$ = fromEvent(window, 'resize').pipe(
+    map(() => window.innerWidth),
+    startWith(window.innerWidth)
+  );
+  sideBarVisible$ = combineLatest([
+    this.windowWidth$.pipe(map((width) => width > 768)),
+    this.currentRoute$.pipe(map((route) => route.startsWith('/blog/'))),
+  ]).pipe(
+    map(([isDesktop, isblogPost]) => !(!isDesktop && isblogPost)),
+    startWith(true),
+  );
+
   constructor(
     private readonly iconRegistry: MatIconRegistry,
     private readonly sanitizer: DomSanitizer,
@@ -108,10 +126,11 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url !== '/') {
         const [, h1] = Array.from(document.querySelectorAll('h1'));
-        console.log(h1);
-        setTimeout(() => {
-          h1.scrollIntoView({ behavior: 'smooth' });
-        }, 500);
+        if (h1) {
+          setTimeout(() => {
+            h1.scrollIntoView({ behavior: 'smooth' });
+          }, 500);
+        }
       }
     });
   }

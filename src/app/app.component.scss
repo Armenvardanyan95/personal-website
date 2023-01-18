@@ -1,9 +1,23 @@
 mat-toolbar {
     .menu {
-        width: 63%;
+        width: 80%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                color: #edc348;
+            }
+        }
 
         .heading {
             color: white;
@@ -12,16 +26,19 @@ mat-toolbar {
         .active {
             color: #edc348;
         }
+
+        .burger {
+            display: none;
+        }
     }
 }
 
 .container {
-    max-width: 65%;
-    margin: 0 auto;
     display: flex;
 
     aside {
         margin-top: 10px;
+        margin-left: 200px;
         max-width: 270px;
 
         .icon-btn {
@@ -55,7 +72,8 @@ mat-toolbar {
 @media screen and (max-width: 400px) {
     aside {
         width: 99%;
-        margin: auto;
+        margin: auto !important;
+        padding-top: 10px;
         max-width: 320px !important;
 
         img {
@@ -67,17 +85,30 @@ mat-toolbar {
     .container {
         width: 90%;
         max-width: unset;
+        margin-right: -10px;
         flex-wrap: wrap;
     }
 
     .links {
         display: none;
     }
+
+    mat-toolbar {
+        padding: 0px;
+        
+        .menu {
+            display: flex;
+            margin: 2px;
+            align-items: center;
+            width: 100%
+        }
+    }
+
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (max-width: 400px) {
     .burger {
-        display: none;
+        display: block !important;
     }
     
 }

@@ -20,6 +20,8 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { CodeSnippetsComponent } from './pages/code-snippets/code-snippets.component';
 import { OpenSourceComponent } from './pages/open-source/open-source.component';
 import { ScullyLibModule } from '@scullyio/ng-lib';
+import { BlogComponent } from './pages/blog/blog.component';
+import { BlogPostComponent } from './pages/blog-post/blog-post.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
     CoursesComponent,
     CodeSnippetsComponent,
     OpenSourceComponent,
+    BlogComponent,
+    BlogPostComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,63 +1,36 @@
 <mat-toolbar color="primary">
   <div class="menu">
     <a routerLink="/" class="heading">Armen Vardanyan | GDE</a>
-    <div class="links">
-      <a
-        mat-button
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >Articles</a
-      >
-      <a mat-button routerLink="/code-snippets" routerLinkActive="active"
-        >Code Snippets</a
-      >
-      <a mat-button routerLink="/open-source" routerLinkActive="active"
-        >Open Source</a
-      >
-      <a mat-button routerLink="/podcasts" routerLinkActive="active"
-        >Podcasts</a
-      >
-      <a mat-button routerLink="/public-talks" routerLinkActive="active"
-        >Public talks</a
-      >
-      <a mat-button routerLink="/courses" routerLinkActive="active">Courses</a>
-    </div>
-
-    <div class="burger">
-      <button mat-icon-button [mat-menu-trigger-for]="menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <a
-          mat-menu-item
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Articles</a
-        >
-        <a mat-menu-item routerLink="/code-snippets" routerLinkActive="active"
-          >Code Snippets</a
-        >
-        <a mat-menu-item routerLink="/open-source" routerLinkActive="active"
-          >Open Source</a
-        >
-        <a mat-menu-item routerLink="/podcasts" routerLinkActive="active"
-          >Podcasts</a
-        >
-        <a mat-menu-item routerLink="/public-talks" routerLinkActive="active"
-          >Public talks</a
-        >
-        <a mat-menu-item routerLink="/courses" routerLinkActive="active"
-          >Courses</a
-        >
-      </mat-menu>
+    <div>
+      <div class="links">
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
+        <a mat-button routerLink="/blog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Blog</a>
+        <a mat-button routerLink="/code-snippets" routerLinkActive="active">Code Snippets</a>
+        <a mat-button routerLink="/open-source" routerLinkActive="active">Open Source</a>
+        <a mat-button routerLink="/podcasts" routerLinkActive="active">Podcasts</a>
+        <a mat-button routerLink="/public-talks" routerLinkActive="active">Public talks</a>
+        <a mat-button routerLink="/courses" routerLinkActive="active">Courses</a>
+      </div>
+      
+      <div class="burger">
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
+          <a mat-menu-item routerLink="/code-snippets" routerLinkActive="active">Code Snippets</a>
+          <a mat-menu-item routerLink="/open-source" routerLinkActive="active">Open Source</a>
+          <a mat-menu-item routerLink="/podcasts" routerLinkActive="active">Podcasts</a>
+          <a mat-menu-item routerLink="/public-talks" routerLinkActive="active">Public talks</a>
+          <a mat-menu-item routerLink="/courses" routerLinkActive="active">Courses</a>
+        </mat-menu>
+      </div>
     </div>
   </div>
 </mat-toolbar>
 <div class="container">
-  <aside>
-    <img class="pfp" src="../assets/images/pfp.jpg" />
+  <aside *ngIf="sideBarVisible$ | async">
+    <img class="pfp" src="assets/images/pfp.jpg" />
     <div class="bio">
       <h1>Armen Vardanyan</h1>
       <h2>Google Developer Expert for Angular</h2>

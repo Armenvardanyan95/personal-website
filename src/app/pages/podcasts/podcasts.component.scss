@@ -1,7 +1,18 @@
-mat-card {
-    margin: 10px;
+.container {
+    max-width: 900px;
+    margin: 5px;
 
-    a {
-        text-decoration: none !important;
+    mat-card {
+        margin: 10px;
+
+        a {
+            text-decoration: none !important;
+        }
+    }
+}
+
+@media (min-width: 1800px) {
+    .container {
+        max-width: 1200px;
     }
 }

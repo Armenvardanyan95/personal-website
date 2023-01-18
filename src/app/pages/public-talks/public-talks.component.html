@@ -1,10 +1,9 @@
-<h1>Public Talks</h1>
 <div class="container">
+    <h1>Public Talks</h1>
     <mat-card *ngFor="let talk of talks">
         <mat-card-content>
-            <iframe
-                [src]="talk.link | sanitize" title="YouTube video player"
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            <iframe [src]="talk.link | sanitize" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
             <mat-card-title>{{ talk.title }}</mat-card-title>
