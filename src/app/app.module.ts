@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { APP_BASE_HREF } from '@angular/common';
@@ -23,6 +25,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { OpenSourceComponent } from './pages/open-source/open-source.component';
 import { PodcastsComponent } from './pages/podcasts/podcasts.component';
 import { PublicTalksComponent } from './pages/public-talks/public-talks.component';
+import { TAGS, Tags } from './common/tags';
 
 @NgModule({
   declarations: [
@@ -45,15 +48,19 @@ import { PublicTalksComponent } from './pages/public-talks/public-talks.componen
     MatButtonModule,
     MatCardModule,
     MatTooltipModule,
+    MatListModule,
+    MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
     MarkdownModule.forRoot(),
     ScullyLibModule,
+    HammerModule,
   ],
   providers: [
     MatIconRegistry,
-    {provide: APP_BASE_HREF, useValue: '/'}
+    {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: Tags, useValue: TAGS},
   ],
   bootstrap: [AppComponent]
 })

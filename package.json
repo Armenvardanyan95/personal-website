@@ -28,6 +28,7 @@
     "@scullyio/ng-lib": "^2.1.41",
     "@scullyio/scully": "^2.1.41",
     "github-calendar": "^2.2.9",
+    "hammerjs": "^2.0.8",
     "marked": "^4.2.12",
     "ngx-markdown": "^13.1.0",
     "prismjs": "^1.29.0",

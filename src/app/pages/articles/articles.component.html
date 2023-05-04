@@ -4,6 +4,7 @@
             <img mat-card-image [src]="article.img" [alt]="'Article cover for: ' + article.title">
             <mat-card-header>
                 <mat-card-title>{{ article.title }}</mat-card-title>
+                <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-actions>
                 <a *ngFor="let tag of article.tags" class="tag" [href]="tag.link" mat-button target="_blank" matTooltip="Read Docs">

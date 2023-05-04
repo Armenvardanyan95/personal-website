@@ -1,12 +1,33 @@
 .container {
     max-width: 900px;
-    margin: 5px;
+    margin: 7px;
 
     mat-card {
         margin: 10px;
 
+        &:hover {
+            img {
+
+                transform: scale(1.15); 
+            }
+        }
+
+        mat-card-header {
+            margin-bottom: 7px;
+        }
+
         a {
             text-decoration: none !important;
+            display: flex;
+            overflow: hidden;
+
+            img {
+                transition: all 0.4s ease-in-out;
+                padding: 0;
+                width: 180px;
+                height: 180px;
+                object-fit: fill;
+            }
         }
     }
 }
@@ -14,5 +35,27 @@
 @media (min-width: 1800px) {
     .container {
         max-width: 1200px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+        width: 99%;
+
+        mat-card {
+            a {
+                display: inline;
+
+                img {
+                    height: unset !important;
+                    width: 100%;
+                    // object-fit: cover;
+                    // border-top-left-radius: 5px;
+                    // border-top-right-radius: 5px;
+                    // object-position: 50% 100%;
+                }
+            }
+
+        }
     }
 }

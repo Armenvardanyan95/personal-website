@@ -21,6 +21,7 @@ specifiers:
   '@types/jasmine': ~3.8.0
   '@types/node': ^12.11.1
   github-calendar: ^2.2.9
+  hammerjs: ^2.0.8
   jasmine-core: ~3.8.0
   karma: ~6.3.0
   karma-chrome-launcher: ~3.1.0
@@ -50,6 +51,7 @@ dependencies:
   '@scullyio/ng-lib': 2.1.41_p55sm25i3taoixrc5u7w43nedm
   '@scullyio/scully': 2.1.41_sjgfitulh6qn5rg4j73iwtc7c4
   github-calendar: 2.3.2
+  hammerjs: 2.0.8
   marked: 4.2.12
   ngx-markdown: 13.1.0_l3eivdvfkale5dluvsezz73z44
   prismjs: 1.29.0
@@ -5051,6 +5053,11 @@ packages:
       - canvas
       - supports-color
       - utf-8-validate
+
+  /hammerjs/2.0.8:
+    resolution: {integrity: sha512-tSQXBXS/MWQOn/RKckawJ61vvsDpCom87JgxiYdGwHdOa0ht0vzUWDlfioofFCRU0L+6NGDt6XzbgoJvZkMeRQ==}
+    engines: {node: '>=0.8.0'}
+    dev: false
 
   /handle-thing/2.0.1:
     resolution: {integrity: sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==}

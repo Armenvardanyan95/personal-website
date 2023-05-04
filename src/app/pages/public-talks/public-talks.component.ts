@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
+import { Tags } from 'src/app/common/tags';
 import data from '../../../assets/content/public-talks.json';
 
 type PublicTalk = {
@@ -16,12 +17,7 @@ type PublicTalk = {
   styleUrls: ['./public-talks.component.scss']
 })
 export class PublicTalksComponent {
-  tagMap = new Map<string, string>([
-    ['rxjs', 'https://rxjs.dev/'],
-    ['angular', 'https://angular.io/'],
-    ['typescript', 'https://www.typescriptlang.org/'],
-    ['ngrx', 'https://ngrx.io/'],
-  ]);
+  tagMap = inject(Tags);
   talks = (data as unknown as PublicTalk[]).map(article => ({
     ...article,
     tags: article.tags.map(tag => ({

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import data from '../../../assets/content/blog-posts.json';
+import { Tags } from 'src/app/common/tags';
 
 export interface BlogPost {
 	title: string;
@@ -10,6 +11,7 @@ export interface BlogPost {
 	description: string;
 	file: string;
 	cover: string;
+  ogCover: string;
 	tags: string[];
 }
 
@@ -19,12 +21,7 @@ export interface BlogPost {
   styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent {
-  tagMap = new Map<string, string>([
-    ['rxjs', 'https://rxjs.dev/'],
-    ['angular', 'https://angular.io/'],
-    ['typescript', 'https://www.typescriptlang.org/'],
-    ['ngrx', 'https://ngrx.io/'],
-  ]);
+  tagMap = inject(Tags);
   blogPosts = (data as unknown as BlogPost[]).map((article) => ({
     ...article,
     tags: article.tags.map((tag) => ({

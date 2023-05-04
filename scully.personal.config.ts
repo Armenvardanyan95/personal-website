@@ -1,8 +1,15 @@
-import { ScullyConfig } from '@scullyio/scully';
+import { HandledRoute, registerPlugin, ScullyConfig } from '@scullyio/scully';
 
-/** this loads the default render plugin, remove when switching to something else. */
+function blogPostsPlugin(route: string = '', config = {}): Promise<HandledRoute[]> {
+  return Promise.resolve([
+    { route: '/blog/where-is-angular-headed' },
+    { route: '/blog/should-you-know-javascript-before-learning-a-framework' },
+  ]);
+}
 
+const validator = async conf => [];
 
+registerPlugin('router', 'blogPosts', blogPostsPlugin, validator);
 
 export const config: ScullyConfig = {
   projectRoot: "./src",
@@ -10,5 +17,8 @@ export const config: ScullyConfig = {
   spsModulePath: 'YOUR OWN MODULE PATH HERE',
   outDir: './dist/static',
   routes: {
+    '/blog/:slug': {
+      type: 'blogPosts',
+    },
   }
 };

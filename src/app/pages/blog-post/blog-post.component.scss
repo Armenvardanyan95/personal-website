@@ -1,9 +1,15 @@
 .blog-post-container {
     max-width: 900px;
     margin: 10px;
+    box-shadow: #bda1dd 0px 0px 5px;
+    padding: 10px;
+    border-radius: 10px;
 
     img {
         object-fit: cover;
+        object-position: 50% 90%;
+        width: 900px;
+        height: 360px;
     }
 }
 
@@ -15,6 +21,17 @@
 
 @media (max-width: 480px) {
     .blog-post-container {
-        max-width: 320px;
+        max-width: 98%;
+
+        img {
+            width: 270px;
+            height: 120px;
+            object-fit: cover;
+            object-position: 50% 90%;
+        }
+
+        pre {
+            width: 2350px;
+        }
     }
 }

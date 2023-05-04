@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { combineLatest, fromEvent, merge } from 'rxjs';
-import { filter, map, startWith, tap } from 'rxjs/operators';
+import { filter, map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -86,6 +86,40 @@ export class AppComponent implements OnInit {
       resource: 'assets/icons/email.svg',
     },
   ];
+  sidenavOpen = false;
+
+  siteLinks = [
+    {
+      name: 'Blog',
+      url: '/blog',
+      icon: 'text_snippet',
+    },
+    {
+      name: 'Code Snippets',
+      url: '/code-snippets',
+      icon: 'code',
+    },
+    {
+      name: 'Open Source',
+      url: '/open-source',
+      icon: 'source',
+    },
+    {
+      name: 'Podcasts',
+      url: '/podcasts',
+      icon: 'podcasts',
+    },
+    {
+      name: 'Public Talks',
+      url: '/public-talks',
+      icon: 'public',
+    },
+    {
+      name: 'Courses',
+      url: '/courses',
+      icon: 'menu_book',
+    },
+  ];
 
   currentRoute$ = this.router.events.pipe(
     filter((event) => event instanceof NavigationEnd),
@@ -97,8 +131,8 @@ export class AppComponent implements OnInit {
     startWith(window.innerWidth)
   );
   sideBarVisible$ = combineLatest([
-    this.windowWidth$.pipe(map((width) => width > 768)),
-    this.currentRoute$.pipe(map((route) => route.startsWith('/blog/'))),
+    this.windowWidth$.pipe(map((width) => width > 800)),
+    this.currentRoute$.pipe(map((route) => route !== '/')),
   ]).pipe(
     map(([isDesktop, isblogPost]) => !(!isDesktop && isblogPost)),
     startWith(true),
@@ -107,7 +141,7 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly iconRegistry: MatIconRegistry,
     private readonly sanitizer: DomSanitizer,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
     this.links.forEach((link) => {
       this.iconRegistry.addSvgIcon(
@@ -125,10 +159,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd && event.url !== '/') {
+        this.sidenavOpen = false;
         const [, h1] = Array.from(document.querySelectorAll('h1'));
         if (h1) {
           setTimeout(() => {
-            h1.scrollIntoView({ behavior: 'smooth' });
+            h1.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+              inline: 'nearest',
+            });
           }, 500);
         }
       }
@@ -140,3 +179,7 @@ export class AppComponent implements OnInit {
     document.body.dispatchEvent(new Event('wheel'));
   }
 }
+
+// angular component with an inline template and styles, inputs named id and title
+
+

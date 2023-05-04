@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import data from '../../../assets/content/courses.json';
+import { Tags } from 'src/app/common/tags';
 
 
 @Component({
@@ -10,12 +11,7 @@ import data from '../../../assets/content/courses.json';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent {
-  tagMap = new Map<string, string>([
-    ['rxjs', 'https://rxjs.dev/'],
-    ['angular', 'https://angular.io/'],
-    ['typescript', 'https://www.typescriptlang.org/'],
-    ['ngrx', 'https://ngrx.io/'],
-  ]);
+  tagMap = inject(Tags);
   courses = data.map(course => ({
     ...course,
     tags: course.tags.map(tag => ({

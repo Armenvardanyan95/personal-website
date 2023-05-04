@@ -1,101 +1,83 @@
-<mat-toolbar color="primary">
-  <div class="menu">
-    <a routerLink="/" class="heading">Armen Vardanyan | GDE</a>
-    <div>
-      <div class="links">
-        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
-        <a mat-button routerLink="/blog" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Blog</a>
-        <a mat-button routerLink="/code-snippets" routerLinkActive="active">Code Snippets</a>
-        <a mat-button routerLink="/open-source" routerLinkActive="active">Open Source</a>
-        <a mat-button routerLink="/podcasts" routerLinkActive="active">Podcasts</a>
-        <a mat-button routerLink="/public-talks" routerLinkActive="active">Public talks</a>
-        <a mat-button routerLink="/courses" routerLinkActive="active">Courses</a>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="sidenavOpen" position="end" mode="push">
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let link of siteLinks" [activated]="linkRef.isActive" [routerLink]="link.url"
+        routerLinkActive #linkRef="routerLinkActive">
+        <span class="mobile-link">
+          <mat-icon>{{ link.icon }}</mat-icon>{{ link.name }}
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div class="menu">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="heading">Armen
+          Vardanyan | GDE</a>
+        <div>
+          <div class="links">
+            <a *ngFor="let link of siteLinks" mat-button [routerLink]="link.url" routerLinkActive="active">
+              <mat-icon>{{ link.icon }}</mat-icon>{{ link.name }}
+            </a>
+          </div>
+
+          <div class="burger">
+            <button mat-icon-button aria-label="Menu Button" matTooltip="Menu" (click)="sidenavOpen = true">
+              <mat-icon>menu</mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
-      
-      <div class="burger">
-        <button mat-icon-button [mat-menu-trigger-for]="menu">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <a mat-menu-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
-          <a mat-menu-item routerLink="/code-snippets" routerLinkActive="active">Code Snippets</a>
-          <a mat-menu-item routerLink="/open-source" routerLinkActive="active">Open Source</a>
-          <a mat-menu-item routerLink="/podcasts" routerLinkActive="active">Podcasts</a>
-          <a mat-menu-item routerLink="/public-talks" routerLinkActive="active">Public talks</a>
-          <a mat-menu-item routerLink="/courses" routerLinkActive="active">Courses</a>
-        </mat-menu>
-      </div>
+    </mat-toolbar>
+    <div class="container">
+      <aside *ngIf="sideBarVisible$ | async">
+        <img class="pfp" alt="main picture" src="assets/images/pfp.avif" />
+        <div class="bio">
+          <h1>Armen Vardanyan</h1>
+          <h2>Google Developer Expert for Angular</h2>
+          <p>
+            Principal Frontend Developer at
+            <a href="https://volo.global/" target="_blank">VOLO</a>, JavaScript
+            mentor, technical writer at
+            <a href="https://dev.to/this-is-learning" target="_blank">This is Learning</a>, <a
+              href="https://dev.to/this-is-angular">This is Angular</a>, and
+            <a href="https://indepth.dev/" target="_blank">InDepth</a>. I also
+            appear on the
+            <a href="https://adventuresinangular.com/" target="_blank">Adventures in Angular</a>
+            podcast from time to time as a panelist.
+          </p>
+
+          <p>
+            I enjoy history, football, math, geology, chess, and the occasional
+            beer.
+          </p>
+
+          <p>
+            <a href="https://www.google.com/maps/place/Yerevan,+Armenia/@40.1535005,44.4185274,12z/data=!3m1!4b1!4m5!3m4!1s0x406aa2dab8fc8b5b:0x3d1479ae87da526a!8m2!3d40.1872023!4d44.515209"
+              target="_blank" class="location">
+              <mat-icon svgIcon="marker"></mat-icon>
+              <span>Yerevan, Armenia</span>
+            </a>
+          </p>
+
+          <p class="social-links">
+            <a>
+              <a *ngFor="let link of links" mat-icon-button class="icon-btn" [href]="link.url" [matTooltip]="link.title"
+                [attr.aria-label]="'Link to ' + link.title" target="_blank">
+                <mat-icon [svgIcon]="link.name"></mat-icon>
+              </a>
+            </a>
+          </p>
+        </div>
+      </aside>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
     </div>
-  </div>
-</mat-toolbar>
-<div class="container">
-  <aside *ngIf="sideBarVisible$ | async">
-    <img class="pfp" src="assets/images/pfp.jpg" />
-    <div class="bio">
-      <h1>Armen Vardanyan</h1>
-      <h2>Google Developer Expert for Angular</h2>
-      <p>
-        Principal Frontend Developer at
-        <a href="https://volo.global/" target="_blank">VOLO</a>, JavaScript
-        mentor at
-        <a href="https://bdg.am/en/" target="_blank"
-          >Business Development Group</a
-        >, technical writer at
-        <a href="https://dev.to/this-is-learning" target="_blank"
-          >This is Learning</a
-        >, <a href="https://dev.to/this-is-angular">This is Angular</a>, and
-        <a href="https://indepth.dev/" target="_blank">InDepth</a>. I also
-        appear on the
-        <a href="https://adventuresinangular.com/" target="_blank"
-          >Adventures in Angular</a
-        >
-        podcast from time to time as a panelist.
-      </p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-      <p>
-        I enjoy history, football, math, geology, chess, and the occasional
-        beer.
-      </p>
-
-      <p>
-        <a
-          href="https://www.google.com/maps/place/Yerevan,+Armenia/@40.1535005,44.4185274,12z/data=!3m1!4b1!4m5!3m4!1s0x406aa2dab8fc8b5b:0x3d1479ae87da526a!8m2!3d40.1872023!4d44.515209"
-          target="_blank"
-          class="location"
-        >
-          <mat-icon svgIcon="marker"></mat-icon>
-          <span>Yerevan, Armenia</span>
-        </a>
-      </p>
-
-      <p>
-        <a>
-          <a
-            *ngFor="let link of links"
-            mat-icon-button
-            class="icon-btn"
-            [href]="link.url"
-            [matTooltip]="link.title"
-            target="_blank"
-          >
-            <mat-icon [svgIcon]="link.name"></mat-icon>
-          </a>
-        </a>
-      </p>
-    </div>
-  </aside>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
-</div>
-
-<button
-  *ngIf="hasScroll$ | async"
-  mat-fab
-  id="scrollToTop"
-  (click)="scrollToTop()"
-  matTooltip="Scroll to Top"
-  matTooltipPosition="left"
->
+<button *ngIf="hasScroll$ | async" mat-fab id="scrollToTop" (click)="scrollToTop()" matTooltip="Scroll to Top"
+  matTooltipPosition="left">
   <mat-icon>arrow_upward</mat-icon>
 </button>

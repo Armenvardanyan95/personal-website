@@ -13,7 +13,7 @@
             <p>{{post.description}}</p>
             <a class="read-more" [routerLink]="['/blog', post.slug]">Read more</a>
             <div class="tags">
-                <a *ngFor="let tag of post.tags" class="tag" [href]="tag.link" mat-stroked-button target="_blank" matTooltip="Read Docs">
+                <a *ngFor="let tag of post.tags" class="tag" [href]="tag.link" mat-stroked-button target="_blank" [matTooltip]="tag.link ? 'Read Docs' : ''">
                     <span>#{{tag.name}}</span>
                 </a>
             </div>

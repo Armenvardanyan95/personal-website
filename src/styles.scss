@@ -6,7 +6,7 @@
 @import '~@angular/material/prebuilt-themes/purple-green.css';
 @import '~github-calendar/dist/github-calendar.css';
 
-html, body { height: 100%; }
+html, body { height: 100%; width: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
@@ -23,4 +23,42 @@ a:not([mat-button]):not([mat-tooltip]) {
 
 mat-card-title {
     color: #fff;
+}
+
+
+h2 {
+    font-weight: 350 !important;
+}
+
+[mattooltip] {
+    touch-action: auto !important;
+}
+
+.mat-drawer-container {
+    color: inherit !important;
+    background-color: inherit !important;
+    height: 100%;
+}
+
+.mobile-link {
+    display: flex !important;
+    flex-wrap: wrap !important;
+
+    mat-icon {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-post-container {
+        pre {
+            width: 75%;
+        }
+    }
+}
+
+.mat-mdc-card-title {
+    line-height: 23px !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
 }

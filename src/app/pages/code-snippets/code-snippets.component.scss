@@ -1,24 +1,32 @@
 .container {
     max-width: 900px;
-    margin: 5px;
-}
+    margin: 7px;
 
-mat-card {
-    margin: 10px;
+    mat-card {
+        margin: 10px;
 
-    a {
-        text-decoration: none !important;
+        a {
+            text-decoration: none !important;
+        }
     }
 }
 
 @media screen and (max-width: 400px) {
     mat-card {
-        max-width: 370px;
+        max-width: 290px;
     }
 }
 
 @media screen and (min-width: 1800px) {
     .container {
         max-width: 1200px;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+    .container {
+        max-width: unset !important;
+        width: 700px !important;
+        margin: 5px !important;
     }
 }

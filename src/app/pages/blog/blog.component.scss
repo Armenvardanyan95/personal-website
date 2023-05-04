@@ -1,6 +1,6 @@
 .blog-posts-container {
     max-width: 900px;
-    margin: 10px;
+    margin: 12px;
 
     a:not(.read-more) {
         color: black;
@@ -12,11 +12,12 @@
         display: flex;
         justify-content: space-between;
         border-radius: 10px;
-        box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 5px 0 #bda1dd;
         padding: 10px;
+        margin-bottom: 10px;
 
         >div {
-            margin: 5px;
+            margin: 7px;
         }
 
         .image-container {
@@ -61,7 +62,7 @@
 
 @media (max-width: 480px) {
     .blog-posts-container {
-        width: 320px;
+        margin: 8px;
 
         .blog-post {
             display: block;
@@ -71,7 +72,21 @@
             }
 
             img {
-                width: 300px;
+                width: 270px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+    .blog-post {
+        .post-content {
+            width: 55% !important;
+
+            .tags {
+                a {
+                    margin: 1px !important;
+                }
             }
         }
     }
