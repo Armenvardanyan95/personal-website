@@ -8,8 +8,8 @@ describe('PublicTalksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PublicTalksComponent ]
-    })
+    imports: [PublicTalksComponent]
+})
     .compileComponents();
   });
 

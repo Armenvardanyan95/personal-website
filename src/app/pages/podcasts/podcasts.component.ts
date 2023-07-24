@@ -3,23 +3,24 @@ import { Title } from '@angular/platform-browser';
 
 import data from '../../../assets/content/podcasts.json';
 import { Tags } from 'src/app/common/tags';
-
-console.log({data});
-
-type Podcast = {
-  title: string;
-  description: string;
-  link: string;
-  image?: string;
-  date: string;
-  tags: string[];
-};
-
+import { Podcast } from 'src/app/common/types/podcast.type';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { NgFor, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-podcasts',
-  templateUrl: './podcasts.component.html',
-  styleUrls: ['./podcasts.component.scss'],
+    selector: 'app-podcasts',
+    templateUrl: './podcasts.component.html',
+    styleUrls: ['./podcasts.component.scss'],
+    standalone: true,
+    imports: [
+        NgFor,
+        MatCardModule,
+        MatTooltipModule,
+        MatButtonModule,
+        DatePipe,
+    ],
 })
 export class PodcastsComponent {
   tagMap = inject(Tags);

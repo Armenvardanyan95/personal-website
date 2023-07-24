@@ -3,6 +3,10 @@ import { Title } from '@angular/platform-browser';
 
 import data from '../../../assets/content/blog-posts.json';
 import { Tags } from 'src/app/common/tags';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { NgFor, DatePipe } from '@angular/common';
 
 export interface BlogPost {
 	title: string;
@@ -16,9 +20,17 @@ export interface BlogPost {
 }
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss'],
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.scss'],
+    standalone: true,
+    imports: [
+        NgFor,
+        RouterLink,
+        MatButtonModule,
+        MatTooltipModule,
+        DatePipe,
+    ],
 })
 export class BlogComponent {
   tagMap = inject(Tags);

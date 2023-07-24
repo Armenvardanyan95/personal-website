@@ -7,13 +7,21 @@ import { BlogPost } from '../blog/blog.component';
 
 import data from '../../../assets/content/blog-posts.json';
 import { Tags } from 'src/app/common/tags';
+import { MarkdownModule } from 'ngx-markdown';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 
 
 @Component({
-  selector: 'app-blog-post',
-  templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.scss'],
+    selector: 'app-blog-post',
+    templateUrl: './blog-post.component.html',
+    styleUrls: ['./blog-post.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        MarkdownModule,
+        AsyncPipe,
+    ],
 })
 export class BlogPostComponent implements AfterViewInit {
   slug$ = this.route.paramMap.pipe(map((params) => params.get('slug')));

@@ -1,14 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import { combineLatest, fromEvent, merge } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports: [
+        MatSidenavModule,
+        MatListModule,
+        NgFor,
+        RouterLinkActive,
+        RouterLink,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTooltipModule,
+        NgIf,
+        RouterOutlet,
+        AsyncPipe,
+    ],
 })
 export class AppComponent implements OnInit {
   hasScroll$ = merge(
@@ -176,6 +197,7 @@ export class AppComponent implements OnInit {
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('scrolling to top');
     document.body.dispatchEvent(new Event('wheel'));
   }
 }

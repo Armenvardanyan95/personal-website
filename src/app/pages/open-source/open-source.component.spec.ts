@@ -8,8 +8,8 @@ describe('OpenSourceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OpenSourceComponent ]
-    })
+    imports: [OpenSourceComponent]
+})
     .compileComponents();
   });
 

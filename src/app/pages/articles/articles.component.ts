@@ -1,21 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import data from '../../../assets/content/articles.json';
 import { Tags } from 'src/app/common/tags';
-
-type Article = {
-  title: string;
-  link: string;
-  img: string;
-  date: string;
-  tags: ('rxjs' | 'angular' | 'typescript' | 'ngrx')[];
-  description: string;
-};
+import { Article } from 'src/app/common/types/article.type';
+import data from '../../../assets/content/articles.json';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { NgFor, DatePipe } from '@angular/common';
+import { LatestNewsComponent } from './latest-news.component';
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+    selector: 'app-articles',
+    templateUrl: './articles.component.html',
+    styleUrls: ['./articles.component.scss'],
+    standalone: true,
+    imports: [LatestNewsComponent, NgFor, MatCardModule, MatTooltipModule, MatButtonModule, DatePipe]
 })
 export class ArticlesComponent {
   tagMap = inject(Tags);
