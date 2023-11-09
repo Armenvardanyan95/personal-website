@@ -1,35 +1,35 @@
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
-import { combineLatest, fromEvent, merge } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { combineLatest, fromEvent, merge } from 'rxjs';
+import { filter, map, startWith } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [
-        MatSidenavModule,
-        MatListModule,
-        NgFor,
-        RouterLinkActive,
-        RouterLink,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatTooltipModule,
-        NgIf,
-        RouterOutlet,
-        AsyncPipe,
-    ],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    MatSidenavModule,
+    MatListModule,
+    NgFor,
+    RouterLinkActive,
+    RouterLink,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatTooltipModule,
+    NgIf,
+    RouterOutlet,
+    AsyncPipe,
+  ],
 })
 export class AppComponent implements OnInit {
   hasScroll$ = merge(
@@ -111,29 +111,29 @@ export class AppComponent implements OnInit {
 
   siteLinks = [
     {
-      name: 'Blog',
-      url: '/blog',
-      icon: 'text_snippet',
-    },
-    {
-      name: 'Code Snippets',
-      url: '/code-snippets',
-      icon: 'code',
-    },
-    {
-      name: 'Open Source',
-      url: '/open-source',
-      icon: 'source',
-    },
-    {
       name: 'Podcasts',
       url: '/podcasts',
       icon: 'podcasts',
     },
     {
+      name: 'Blog',
+      url: '/blog',
+      icon: 'text_snippet',
+    },
+    // {
+    //   name: 'Open Source',
+    //   url: '/open-source',
+    //   icon: 'source',
+    // },
+    {
       name: 'Public Talks',
       url: '/public-talks',
       icon: 'public',
+    },
+    {
+      name: 'Code Snippets',
+      url: '/code-snippets',
+      icon: 'code',
     },
     {
       name: 'Courses',
@@ -156,13 +156,13 @@ export class AppComponent implements OnInit {
     this.currentRoute$.pipe(map((route) => route !== '/')),
   ]).pipe(
     map(([isDesktop, isblogPost]) => !(!isDesktop && isblogPost)),
-    startWith(true),
+    startWith(true)
   );
 
   constructor(
     private readonly iconRegistry: MatIconRegistry,
     private readonly sanitizer: DomSanitizer,
-    private readonly router: Router,
+    private readonly router: Router
   ) {
     this.links.forEach((link) => {
       this.iconRegistry.addSvgIcon(

@@ -2,9 +2,10 @@
     <h1>Podcasts</h1>
     <mat-card *ngFor="let podcast of podcasts" matTooltip="Listen to Podcast">
         <a [href]="podcast.link" target="_blank">
-            <img mat-card-image
-                [src]="'assets/images/podcast-photos/' + (podcast.image ?? 'default-podcast.jpeg')"
-                [alt]="'Image for ' + podcast.title" />
+            <div class="image-container">
+                <img mat-card-image [src]="'assets/images/podcast-photos/' + (podcast.image ?? 'default-podcast.jpeg')"
+                    [alt]="'Image for ' + podcast.title" />
+            </div>
             <div class="podcast-content">
                 <mat-card-header>
                     <mat-card-title>{{ podcast.title }}</mat-card-title>

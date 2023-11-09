@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, NgModule, OnChanges, SimpleChanges, inject, numberAttribute } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Tags } from 'src/app/common/tags';
 import { Article } from 'src/app/common/types/article.type';
@@ -98,3 +98,4 @@ export class ArticlesComponent {
     });
   }
 }
+

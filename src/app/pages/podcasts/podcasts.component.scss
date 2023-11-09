@@ -4,11 +4,11 @@
 
     mat-card {
         margin: 10px;
+        width: 100%;
 
         &:hover {
             img {
-
-                transform: scale(1.15); 
+                transform: scale(1.1);
             }
         }
 
@@ -19,14 +19,22 @@
         a {
             text-decoration: none !important;
             display: flex;
-            overflow: hidden;
 
-            img {
-                transition: all 0.4s ease-in-out;
-                padding: 0;
-                width: 180px;
-                height: 180px;
-                object-fit: fill;
+            div.image-container {
+                height: 160px !important;
+                width: 160px !important;
+                overflow: hidden;
+                img {
+                    transition: all 0.4s ease-in-out;
+                    padding: 0;
+                    width: 180px;
+                    height: 180px;
+                    object-fit: fill;
+                }
+            }
+            
+            div:not(.image-container) {
+                width: calc(100% - 160px);
             }
         }
     }
@@ -40,19 +48,33 @@
 
 @media screen and (max-width: 400px) {
     .container {
-        width: 99%;
+        width: 90%;
 
         mat-card {
             a {
                 display: inline;
 
                 img {
-                    height: unset !important;
+                    // height: unset !important;
                     width: 100%;
-                    // object-fit: cover;
+                    object-fit: cover !important;
                     // border-top-left-radius: 5px;
                     // border-top-right-radius: 5px;
                     // object-position: 50% 100%;
+                }
+
+                div.image-container {
+                    width: 100% !important;
+                    overflow: visible !important;
+
+                    img {
+                        width: 100% !important;
+                    }
+                }
+
+                div:not(.image-container) {
+                    width: 100% !important;
+                    padding-top: 7px !important;
                 }
             }
 
