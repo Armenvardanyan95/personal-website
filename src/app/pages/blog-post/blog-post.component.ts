@@ -8,7 +8,7 @@ import { BlogPost } from '../blog/blog.component';
 import data from '../../../assets/content/blog-posts.json';
 import { Tags } from 'src/app/common/tags';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
 
 
 
@@ -21,6 +21,7 @@ import { NgIf, AsyncPipe } from '@angular/common';
         NgIf,
         MarkdownModule,
         AsyncPipe,
+        NgOptimizedImage,
     ],
 })
 export class BlogPostComponent implements AfterViewInit {

@@ -1,5 +1,5 @@
 <div *ngIf="blogPost$ | async as post" class="blog-post-container">
     <h1>{{ post.title }}</h1>
-    <img [src]="'assets/images/cover-photos/' + post.cover" />
+    <img [ngSrc]="'assets/images/cover-photos/' + post.cover" width="900" height="360" priority />
     <markdown [src]="'assets/content/blog-posts/' + post.file" lineNumbers></markdown>
 </div>

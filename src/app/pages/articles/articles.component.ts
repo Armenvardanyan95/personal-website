@@ -1,12 +1,12 @@
-import { Component, Input, NgModule, OnChanges, SimpleChanges, inject, numberAttribute } from '@angular/core';
+import { DatePipe, NgFor, NgOptimizedImage } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Meta, Title } from '@angular/platform-browser';
 import { Tags } from 'src/app/common/tags';
 import { Article } from 'src/app/common/types/article.type';
 import data from '../../../assets/content/articles.json';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCardModule } from '@angular/material/card';
-import { NgFor, DatePipe } from '@angular/common';
 import { LatestNewsComponent } from './latest-news.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { LatestNewsComponent } from './latest-news.component';
     templateUrl: './articles.component.html',
     styleUrls: ['./articles.component.scss'],
     standalone: true,
-    imports: [LatestNewsComponent, NgFor, MatCardModule, MatTooltipModule, MatButtonModule, DatePipe]
+    imports: [LatestNewsComponent, NgFor, MatCardModule, MatTooltipModule, MatButtonModule, DatePipe, NgOptimizedImage]
 })
 export class ArticlesComponent {
   tagMap = inject(Tags);

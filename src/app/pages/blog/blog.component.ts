@@ -6,7 +6,7 @@ import { Tags } from 'src/app/common/tags';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { NgFor, DatePipe } from '@angular/common';
+import { NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
 
 export interface BlogPost {
 	title: string;
@@ -30,6 +30,7 @@ export interface BlogPost {
         MatButtonModule,
         MatTooltipModule,
         DatePipe,
+        NgOptimizedImage,
     ],
 })
 export class BlogComponent {

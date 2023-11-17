@@ -31,7 +31,7 @@
     </mat-toolbar>
     <div class="container">
       <aside *ngIf="sideBarVisible$ | async">
-        <img class="pfp" alt="main picture" src="assets/images/pfp.avif" />
+        <img class="pfp" alt="main picture" width="235" height="235" ngSrc="assets/images/pfp.avif" priority/>
         <div class="bio">
           <h1>Armen Vardanyan</h1>
           <h2>Google Developer Expert for Angular</h2>
@@ -48,7 +48,7 @@
           </p>
 
           <p>
-            I enjoy history, football, math, geology, chess, and the occasional
+            I enjoy cooking, history, football, math, geology, chess, and the occasional
             beer.
           </p>
 

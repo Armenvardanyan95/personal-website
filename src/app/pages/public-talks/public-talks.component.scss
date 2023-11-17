@@ -7,9 +7,14 @@
     mat-card {
         width: 100%;
         margin: 10px;
-    
+
+        mat-card-subtitle {
+            color: #c552d9;
+        }
+
         a {
             text-decoration: none !important;
+            color: #c552d9;
         }
 
         iframe {

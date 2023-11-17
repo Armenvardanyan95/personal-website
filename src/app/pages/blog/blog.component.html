@@ -1,7 +1,7 @@
 <div class="blog-posts-container">
     <div *ngFor="let post of blogPosts" class="blog-post">
         <div class="image-container">
-            <img [src]="'assets/images/cover-photos/' + post.cover" width="240px" height="190px" [alt]="post.title"/>
+            <img [ngSrc]="'assets/images/cover-photos/' + post.cover" width="240" height="190" [alt]="post.title"/>
         </div>
         <div class="post-content">
             <div class="title-section">
