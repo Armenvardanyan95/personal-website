@@ -1,6 +1,7 @@
 <div class="container">
     <app-latest-news></app-latest-news>
-    <mat-card *ngFor="let article of articles" matTooltip="Read Article" color="primary">
+    @for (article of articles; track article) {
+  <mat-card matTooltip="Read Article" color="primary">
         <a [href]="article.link" target="_blank">
             <img mat-card-image [ngSrc]="article.img" height="120" width="270" [alt]="'Article cover for: ' + article.title">
             <mat-card-header>
@@ -8,10 +9,13 @@
                 <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-actions>
-                <a *ngFor="let tag of article.tags" class="tag" [href]="tag.link" mat-button target="_blank" matTooltip="Read Docs">
+                @for (tag of article.tags; track tag) {
+  <a class="tag" [href]="tag.link" mat-button target="_blank" matTooltip="Read Docs">
                     <span>#{{tag.name}}</span>
                 </a>
+}
             </mat-card-actions>
         </a>
     </mat-card>
+}
 </div>

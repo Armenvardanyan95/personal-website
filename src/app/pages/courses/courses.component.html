@@ -1,6 +1,7 @@
 <div class="container">
     <h1>Courses</h1>
-    <mat-card *ngFor="let course of courses" matTooltip="View the course">
+    @for (course of courses; track course) {
+  <mat-card matTooltip="View the course">
         <a [href]="course.link" target="_blank">
             <mat-card-header>
                 <mat-card-title>{{ course.title }}</mat-card-title>
@@ -9,10 +10,13 @@
                 <p>{{ course.description }}</p>
             </mat-card-content>
             <mat-card-actions>
-                <a *ngFor="let tag of course.tags" [href]="tag.link" mat-button target="_blank" matTooltip="Read Docs">
+                @for (tag of course.tags; track tag) {
+  <a [href]="tag.link" mat-button target="_blank" matTooltip="Read Docs">
                     <span>#{{tag.name}}</span>
                 </a>
+}
             </mat-card-actions>
         </a>
     </mat-card>
+}
 </div>

@@ -1,12 +1,14 @@
 <mat-sidenav-container>
   <mat-sidenav [(opened)]="sidenavOpen" position="end" mode="push">
     <mat-nav-list>
-      <a mat-list-item *ngFor="let link of siteLinks" [activated]="linkRef.isActive" [routerLink]="link.url"
+      @for (link of siteLinks; track link.name) {
+  <a mat-list-item [activated]="linkRef.isActive" [routerLink]="link.url"
         routerLinkActive #linkRef="routerLinkActive">
         <span class="mobile-link">
           <mat-icon>{{ link.icon }}</mat-icon>{{ link.name }}
         </span>
       </a>
+}
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -16,9 +18,11 @@
           Vardanyan | GDE</a>
         <div>
           <div class="links">
-            <a *ngFor="let link of siteLinks" mat-button [routerLink]="link.url" routerLinkActive="active">
+            @for (link of siteLinks; track link) {
+  <a mat-button [routerLink]="link.url" routerLinkActive="active">
               <mat-icon>{{ link.icon }}</mat-icon>{{ link.name }}
             </a>
+}
           </div>
 
           <div class="burger">
@@ -30,7 +34,8 @@
       </div>
     </mat-toolbar>
     <div class="container">
-      <aside *ngIf="sideBarVisible$ | async">
+      @if (sideBarVisible$ | async) {
+<aside>
         <img class="pfp" alt="main picture" width="235" height="235" ngSrc="assets/images/pfp.avif" priority/>
         <div class="bio">
           <h1>Armen Vardanyan</h1>
@@ -62,14 +67,17 @@
 
           <p class="social-links">
             <a>
-              <a *ngFor="let link of links" mat-icon-button class="icon-btn" [href]="link.url" [matTooltip]="link.title"
+              @for (link of links; track link) {
+  <a mat-icon-button class="icon-btn" [href]="link.url" [matTooltip]="link.title"
                 [attr.aria-label]="'Link to ' + link.title" target="_blank">
                 <mat-icon [svgIcon]="link.name"></mat-icon>
               </a>
+}
             </a>
           </p>
         </div>
       </aside>
+}
       <main>
         <router-outlet></router-outlet>
       </main>
@@ -77,7 +85,9 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<button *ngIf="hasScroll$ | async" mat-fab id="scrollToTop" (click)="scrollToTop()" matTooltip="Scroll to Top"
+@if (hasScroll$ | async) {
+<button mat-fab id="scrollToTop" (click)="scrollToTop()" matTooltip="Scroll to Top"
   matTooltipPosition="left">
   <mat-icon>arrow_upward</mat-icon>
 </button>
+}
