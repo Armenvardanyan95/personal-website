@@ -1,5 +1,11 @@
-import { AsyncPipe, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {
+  AsyncPipe,
+  DOCUMENT,
+  NgFor,
+  NgIf,
+  NgOptimizedImage,
+} from '@angular/common';
+import { Component, OnInit, afterNextRender, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -7,9 +13,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { combineLatest, fromEvent, merge } from 'rxjs';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+import { Observable, combineLatest, fromEvent, merge } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
+import { AnnouncementComponent } from './common/components/announcement.component';
 
 @Component({
   selector: 'app-root',
@@ -30,16 +43,12 @@ import { filter, map, startWith } from 'rxjs/operators';
     RouterOutlet,
     AsyncPipe,
     NgOptimizedImage,
+    AnnouncementComponent,
   ],
 })
 export class AppComponent implements OnInit {
-  hasScroll$ = merge(
-    fromEvent(document.body, 'wheel'),
-    fromEvent(document.body, 'scroll')
-  ).pipe(
-    map(() => window.pageYOffset > 0),
-    startWith(false)
-  );
+  private readonly document = inject(DOCUMENT);
+  hasScroll$!: Observable<boolean>;
   links = [
     {
       name: 'twitter',
@@ -148,23 +157,38 @@ export class AppComponent implements OnInit {
     map((event) => (event as NavigationEnd).url),
     startWith('/')
   );
-  windowWidth$ = fromEvent(window, 'resize').pipe(
-    map(() => window.innerWidth),
-    startWith(window.innerWidth)
-  );
-  sideBarVisible$ = combineLatest([
-    this.windowWidth$.pipe(map((width) => width > 800)),
-    this.currentRoute$.pipe(map((route) => route !== '/')),
-  ]).pipe(
-    map(([isDesktop, isblogPost]) => !(!isDesktop && isblogPost)),
-    startWith(true)
-  );
+  windowWidth$!: Observable<number>;
+  sideBarVisible$!: Observable<boolean>;
 
   constructor(
     private readonly iconRegistry: MatIconRegistry,
     private readonly sanitizer: DomSanitizer,
     private readonly router: Router
   ) {
+    afterNextRender(() => {
+      this.hasScroll$ = merge(
+        fromEvent(this.document.body, 'wheel'),
+        fromEvent(this.document.body, 'scroll')
+      ).pipe(
+        map(() => window.pageYOffset > 0),
+        startWith(false)
+      );
+    });
+
+    afterNextRender(() => {
+      this.windowWidth$ = fromEvent(window, 'resize').pipe(
+        map(() => window.innerWidth),
+        startWith(window.innerWidth)
+      );
+
+      this.sideBarVisible$ = combineLatest([
+        this.windowWidth$.pipe(map((width) => width > 800)),
+        this.currentRoute$.pipe(map((route) => route !== '/')),
+      ]).pipe(
+        map(([isDesktop, isblogPost]) => !(!isDesktop && isblogPost)),
+        startWith(true)
+      );
+    });
     this.links.forEach((link) => {
       this.iconRegistry.addSvgIcon(
         link.name,
@@ -176,24 +200,27 @@ export class AppComponent implements OnInit {
       'marker',
       this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/marker.svg')
     );
+
+    afterNextRender(() => {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd && event.url !== '/') {
+          this.sidenavOpen = false;
+          const [, h1] = Array.from(document.querySelectorAll('h1'));
+          if (h1) {
+            setTimeout(() => {
+              h1.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest',
+              });
+            }, 500);
+          }
+        }
+      });
+    });
   }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && event.url !== '/') {
-        this.sidenavOpen = false;
-        const [, h1] = Array.from(document.querySelectorAll('h1'));
-        if (h1) {
-          setTimeout(() => {
-            h1.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-              inline: 'nearest',
-            });
-          }, 500);
-        }
-      }
-    });
   }
 
   scrollToTop() {
@@ -202,7 +229,3 @@ export class AppComponent implements OnInit {
     document.body.dispatchEvent(new Event('wheel'));
   }
 }
-
-// angular component with an inline template and styles, inputs named id and title
-
-

@@ -1,14 +1,14 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, afterNextRender, inject, Injector } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 
 import { BlogPost } from '../blog/blog.component';
 
-import data from '../../../assets/content/blog-posts.json';
-import { Tags } from 'src/app/common/tags';
+import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { Tags } from 'src/app/common/tags';
+import data from '../../../assets/content/blog-posts.json';
 
 
 
@@ -27,6 +27,7 @@ import { NgIf, AsyncPipe, NgOptimizedImage } from '@angular/common';
 export class BlogPostComponent implements AfterViewInit {
   slug$ = this.route.paramMap.pipe(map((params) => params.get('slug')));
   tagMap = inject(Tags);
+  injector = inject(Injector);
   blogPosts = (data as unknown as BlogPost[]).map((article) => ({
     ...article,
     tags: article.tags.map((tag) => ({
@@ -119,10 +120,12 @@ export class BlogPostComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    afterNextRender(() => {
       const script = document.createElement('script');
       script.src = 'https://platform.twitter.com/widgets.js';
       // script.async = true;
       document.body.appendChild(script);
+    }, {injector: this.injector});
   }
 }
 

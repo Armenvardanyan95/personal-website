@@ -1,0 +1,2 @@
+/blog/where-is-angular-headed
+/blog/should-you-know-javascript-before-learning-a-framework

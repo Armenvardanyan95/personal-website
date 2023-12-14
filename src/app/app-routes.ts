@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { BlogPostComponent } from './pages/blog-post/blog-post.component';
 import { BlogComponent } from './pages/blog/blog.component';
@@ -9,7 +8,7 @@ import { OpenSourceComponent } from './pages/open-source/open-source.component';
 import { PodcastsComponent } from './pages/podcasts/podcasts.component';
 import { PublicTalksComponent } from './pages/public-talks/public-talks.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: ArticlesComponent },
   { path: 'blog', pathMatch: 'full', component: BlogComponent },
   { path: 'blog/:slug', component: BlogPostComponent },
@@ -20,9 +19,3 @@ const routes: Routes = [
   { path: 'open-source', component: OpenSourceComponent },
   { path: '**', redirectTo: '' },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { } 

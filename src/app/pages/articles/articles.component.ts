@@ -8,19 +8,29 @@ import { Tags } from 'src/app/common/tags';
 import { Article } from 'src/app/common/types/article.type';
 import data from '../../../assets/content/articles.json';
 import { LatestNewsComponent } from './latest-news.component';
+import { AnnouncementComponent } from 'src/app/common/components/announcement.component';
 
 @Component({
-    selector: 'app-articles',
-    templateUrl: './articles.component.html',
-    styleUrls: ['./articles.component.scss'],
-    standalone: true,
-    imports: [LatestNewsComponent, NgFor, MatCardModule, MatTooltipModule, MatButtonModule, DatePipe, NgOptimizedImage]
+  selector: 'app-articles',
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.scss'],
+  standalone: true,
+  imports: [
+    LatestNewsComponent,
+    NgFor,
+    MatCardModule,
+    MatTooltipModule,
+    MatButtonModule,
+    DatePipe,
+    NgOptimizedImage,
+    AnnouncementComponent,
+  ],
 })
 export class ArticlesComponent {
   tagMap = inject(Tags);
-  articles = (data as unknown as Article[]).map(article => ({
+  articles = (data as unknown as Article[]).map((article) => ({
     ...article,
-    tags: article.tags.map(tag => ({
+    tags: article.tags.map((tag) => ({
       name: tag,
       link: this.tagMap.get(tag),
     })),
@@ -98,4 +108,3 @@ export class ArticlesComponent {
     });
   }
 }
-

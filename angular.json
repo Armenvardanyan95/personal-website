@@ -18,12 +18,13 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser-esbuild",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/personal",
+            "outputPath": "dist/personal/browser",
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+             "browser": "src/main.ts",
+             "server": "src/main.server.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -43,7 +44,14 @@
               "node_modules/prismjs/components/prism-typescript.min.js",
               "node_modules/prismjs/components/prism-bash.min.js",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
-            ]
+            ],
+            "ssr": {
+              "entry": "server.ts"
+            },
+            "prerender": {
+              "discoverRoutes": true,
+              "routesFile": "routes.txt"
+            }
           },
           "configurations": {
             "production": {
@@ -68,9 +76,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -82,19 +88,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "personal:build:production"
+              "buildTarget": "personal:build:production"
             },
             "development": {
-              "browserTarget": "personal:build:development"
+              "buildTarget": "personal:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "personal:build"
-          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -114,6 +117,67 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/personal/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "personal:build:development",
+              "serverTarget": "personal:server:development"
+            },
+            "production": {
+              "browserTarget": "personal:build:production",
+              "serverTarget": "personal:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "personal:build:production",
+              "serverTarget": "personal:server:production"
+            },
+            "development": {
+              "browserTarget": "personal:build:development",
+              "serverTarget": "personal:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

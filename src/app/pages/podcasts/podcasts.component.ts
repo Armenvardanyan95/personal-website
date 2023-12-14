@@ -7,7 +7,7 @@ import { Podcast } from 'src/app/common/types/podcast.type';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
-import { NgFor, DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-podcasts',
@@ -15,7 +15,7 @@ import { NgFor, DatePipe } from '@angular/common';
     styleUrls: ['./podcasts.component.scss'],
     standalone: true,
     imports: [
-        NgFor,
+        NgClass,
         MatCardModule,
         MatTooltipModule,
         MatButtonModule,
