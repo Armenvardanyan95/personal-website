@@ -1,12 +1,13 @@
 .container {
   .card-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 4), 1fr));
-    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
   }
+
   mat-card {
     width: 270px;
     margin: 10px;
+    place-self: center;
 
     img {
       height: 120px;
@@ -25,17 +26,20 @@
   }
 }
 
-@media screen and (min-width: 500px) and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   .container {
-    width: 89%;
-    margin: auto;
+    .card-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 
 @media screen and (max-width: 400px) {
   .container {
     width: 100%;
-
+    .card-wrapper {
+      grid-template-columns: 1fr;
+    }
     mat-card {
       width: 100%;
 
