@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, afterNextRender } from '@angular/core';
 
 declare let GitHubCalendar: any;
 
@@ -13,7 +13,9 @@ export class OpenSourceComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-    GitHubCalendar('#github-calendar', 'armenvardanyan95', {responsive: true});
+    afterNextRender(() => {
+      GitHubCalendar('#github-calendar', 'armenvardanyan95', {responsive: true});
+    });
   }
 
 }
