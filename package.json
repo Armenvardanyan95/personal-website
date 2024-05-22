@@ -10,7 +10,6 @@
     "scully": "npx scully --",
     "scully:serve": "npx scully serve --",
     "static": "ng build --configuration production && npx scully --",
-    "preinstall": "npx only-allow pnpm",
     "dev:ssr": "ng run personal:serve-ssr",
     "serve:ssr": "node dist/personal/server/main.js",
     "build:ssr": "ng build && ng run personal:server",
