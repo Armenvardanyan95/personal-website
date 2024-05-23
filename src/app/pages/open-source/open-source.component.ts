@@ -10,12 +10,16 @@ declare let GitHubCalendar: any;
 })
 export class OpenSourceComponent implements AfterViewInit {
 
-  constructor() { }
+  constructor() { 
+    afterNextRender(() => {
+      GitHubCalendar('#github-calendar', 'armenvardanyan95', {
+        responsive: true,
+      });
+    });
+  }
 
   ngAfterViewInit(): void {
-    afterNextRender(() => {
-      GitHubCalendar('#github-calendar', 'armenvardanyan95', {responsive: true});
-    });
+    
   }
 
 }

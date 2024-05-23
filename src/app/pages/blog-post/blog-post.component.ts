@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, afterNextRender, inject, Injector } from '@angular/core';
+import { AfterViewInit, Component, Injector, afterNextRender, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
