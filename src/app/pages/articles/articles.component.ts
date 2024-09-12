@@ -4,11 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Meta, Title } from '@angular/platform-browser';
+import { AnnouncementComponent } from 'src/app/common/components/announcement.component';
+import { DefaultImageDirective } from 'src/app/common/directives/default-image.directive';
 import { Tags } from 'src/app/common/tags';
 import { Article } from 'src/app/common/types/article.type';
 import data from '../../../assets/content/articles.json';
 import { LatestNewsComponent } from './latest-news.component';
-import { AnnouncementComponent } from 'src/app/common/components/announcement.component';
 
 @Component({
   selector: 'app-articles',
@@ -24,6 +25,7 @@ import { AnnouncementComponent } from 'src/app/common/components/announcement.co
     DatePipe,
     NgOptimizedImage,
     AnnouncementComponent,
+    DefaultImageDirective,
   ],
 })
 export class ArticlesComponent {

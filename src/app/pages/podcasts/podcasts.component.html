@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Podcasts</h1>
-    @for (podcast of podcasts; track podcast) {
+    @for (podcast of podcasts(); track podcast) {
     <mat-card matTooltip="Listen to Podcast">
         <a [href]="podcast.link" target="_blank">
             <div class="image-container">

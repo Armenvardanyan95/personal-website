@@ -21,7 +21,7 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { Observable, combineLatest, fromEvent, merge } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
+import { debounceTime, filter, map, startWith } from 'rxjs/operators';
 import { AnnouncementComponent } from './common/components/announcement.component';
 
 @Component({
@@ -171,6 +171,7 @@ export class AppComponent implements OnInit {
         fromEvent(this.document.body, 'scroll')
       ).pipe(
         map(() => window.pageYOffset > 0),
+        debounceTime(100),
         startWith(false)
       );
     });
@@ -178,6 +179,7 @@ export class AppComponent implements OnInit {
     afterNextRender(() => {
       this.windowWidth$ = fromEvent(window, 'resize').pipe(
         map(() => window.innerWidth),
+        debounceTime(100),
         startWith(window.innerWidth)
       );
 
@@ -186,6 +188,7 @@ export class AppComponent implements OnInit {
         this.currentRoute$.pipe(map((route) => route !== '/')),
       ]).pipe(
         map(([isDesktop, isblogPost]) => !(!isDesktop && isblogPost)),
+        debounceTime(100),
         startWith(true)
       );
     });
@@ -229,3 +232,4 @@ export class AppComponent implements OnInit {
     document.body.dispatchEvent(new Event('wheel'));
   }
 }
+

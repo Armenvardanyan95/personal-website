@@ -2,7 +2,7 @@
   <app-announcement />
   <div class="card-wrapper">
     @for (article of articles; track article) {
-    <mat-card matTooltip="Read Article" color="primary">
+    <mat-card matTooltip="Read Article" color="primary" ngSkipHydration>
       <a [href]="article.link" target="_blank">
         <img
           mat-card-image
@@ -13,20 +13,16 @@
         />
         <mat-card-header>
           <mat-card-title>{{ article.title }}</mat-card-title>
-          <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions>
-          @for (tag of article.tags; track tag) {
-          <a
-            class="tag"
-            [href]="tag.link"
-            mat-button
-            target="_blank"
-            matTooltip="Read Docs"
-          >
-            <span>#{{ tag.name }}</span>
-          </a>
-          }
+          <div class="article-actions">
+            <mat-card-subtitle>{{ article.date | date }}</mat-card-subtitle>
+            @for (tag of article.tags; track tag) {
+            <a class="tag" [href]="tag.link" mat-button target="_blank" matTooltip="Read Docs">
+              <span>#{{ tag.name }}</span>
+            </a>
+            }
+          </div>
         </mat-card-actions>
       </a>
     </mat-card>

@@ -6,7 +6,7 @@
 // @import '~@angular/material/prebuilt-themes/purple-green.css';
 // @import '~github-calendar/dist/github-calendar.css';
 
-html, body { height: 100%; width: 100%; display: none; }
+html, body { height: 100%; width: 100% }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
@@ -61,4 +61,26 @@ h2 {
     line-height: 23px !important;
     font-size: 18px !important;
     font-weight: 400 !important;
+}
+
+.mat-mdc-card-title {
+    font-size: 16px !important;
+    min-height: 46px !important;
+}
+
+.twitter-tweet-rendered {
+    width: 70% !important;
+    margin: auto !important;
+}
+
+blockquote:has(p) {
+    padding: 7px;
+
+    &:has(strong) {
+        background-color: rgb(87, 39, 209);
+        color: whitesmoke;
+        border-radius: 10px;
+        opacity: 0.95;
+        box-shadow: 0 0 5px 0 #bda1dd;
+    }
 }

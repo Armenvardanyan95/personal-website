@@ -1,6 +1,6 @@
 import { APP_BASE_HREF, IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule, HammerModule, provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideRouter, withEnabledBlockingInitialNavigation, withViewTransitions } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { routes } from './app-routes';
 import { TAGS, Tags } from './common/tags';
@@ -38,6 +38,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimations(),
     provideClientHydration(),
-    provideRouter(routes, withViewTransitions()),
+    provideExperimentalZonelessChangeDetection(),
+    provideRouter(routes, withViewTransitions(), withEnabledBlockingInitialNavigation()),
   ],
 };

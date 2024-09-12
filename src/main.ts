@@ -7,7 +7,7 @@ import { environment } from './environments/environment';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 
-import 'zone.js';
+// import 'zone.js';
 
 if (environment.production) {
   enableProdMode();

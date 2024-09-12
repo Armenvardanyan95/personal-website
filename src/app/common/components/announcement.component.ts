@@ -7,9 +7,10 @@ import { Component } from '@angular/core';
     <div class="announcment-container">
       <div class="announcement-image">
         <img
-          ngSrc="/assets/images/modern-angular-meap.jpeg"
-          width="409"
-          height="230"
+          ngSrc="/assets/images/modern-angular-meap-portrait.png"
+          priority
+          width="240"
+          height="301"
         />
       </div>
       <div class="announcement-text">
@@ -17,16 +18,18 @@ import { Component } from '@angular/core';
         <p>
           For quite a while, I have been writing a book about all the new cool
           stuff in Angular, and I am happy to say that "Modern Angular" is now
-          available as Early Access on
-          <a href="http://mng.bz/amlY" target="_blank">manning.com</a>.
+          available as Early Access on <a href="http://mng.bz/amlY" target="_blank">manning.com</a>.
         </p>
-        <p>This covers the first 3 chapters, where I talk about</p>
+        <p>All 10 chapters now available as eBook, where I talk about</p>
         <ul>
           <li>Modern Angular as a whole</li>
           <li>Standalone APIs</li>
           <li>The <i>inject</i> function and its amazing applications</li>
+          <li>Signals</li>
+          <li>SSR</li>
+          <li>New template syntax</li>
+          <li>And way, way more</li>
         </ul>
-        <p>Use the promocode <b>mlvardanyan</b> to get 45% off the book.</p>
       </div>
     </div>
   `,
@@ -41,6 +44,11 @@ import { Component } from '@angular/core';
         display: flex;
         justify-content: space-between;
         width: 830px;
+
+        img {
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
 
         .announcement-text {
             margin-left: 15px;
