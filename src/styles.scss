@@ -49,14 +49,6 @@ h2 {
     }
 }
 
-@media (max-width: 480px) {
-    .blog-post-container {
-        pre {
-            width: 75%;
-        }
-    }
-}
-
 .mat-mdc-card-title {
     line-height: 23px !important;
     font-size: 18px !important;
@@ -82,5 +74,27 @@ blockquote:has(p) {
         border-radius: 10px;
         opacity: 0.95;
         box-shadow: 0 0 5px 0 #bda1dd;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-post-container {
+        pre {
+            width: 75%;
+        }
+    }
+
+    .twitter-tweet-rendered {
+        width: 100% !important;
+    }
+
+    main {
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        max-width: 100% !important;
     }
 }
