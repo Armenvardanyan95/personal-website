@@ -121,14 +121,14 @@ export class AppComponent implements OnInit {
 
   siteLinks = [
     {
-      name: 'Podcasts',
-      url: '/podcasts',
-      icon: 'podcasts',
-    },
-    {
       name: 'Blog',
       url: '/blog',
       icon: 'text_snippet',
+    },
+    {
+      name: 'Podcasts',
+      url: '/podcasts',
+      icon: 'podcasts',
     },
     // {
     //   name: 'Open Source',
@@ -223,8 +223,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });

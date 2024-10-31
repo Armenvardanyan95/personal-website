@@ -1,3 +1,5 @@
 /blog/where-is-angular-headed
 /blog/should-you-know-javascript-before-learning-a-framework
 /blog/authoring-format
+/blog/why-i-switched-to-template-driven-forms
+/blog/everything-we-know-about-linked-signal
