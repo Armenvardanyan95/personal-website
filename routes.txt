@@ -3,3 +3,4 @@
 /blog/authoring-format
 /blog/why-i-switched-to-template-driven-forms
 /blog/everything-we-know-about-linked-signal
+/blog/thoughts-on-the-new-style-guide-rfc
